@@ -65,6 +65,7 @@ echo "Job has completed. Will now terminate the Cluster $CLUSTER_ID"
 # Terminate the EMR cluster
 aws emr terminate-clusters --cluster-ids $CLUSTER_ID
 echo "Cluster terminated"
+sleep 5 # Wait 5 seconds, just in case
 
 # Fetch the logs and output them here (useful for local test and for looking at Docker output)
 export PATH_STDOUT="s3://$S3_BUCKET_NAME/"$(aws s3 ls s3://$S3_BUCKET_NAME/logs --recursive | grep $CLUSTER_ID | grep 0001/stdout | cut -c 32-)
