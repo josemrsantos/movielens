@@ -1,4 +1,4 @@
 # TODO
- - Version
- - Docker
- - Improve documentation
+ - Add Version
+ - Add Docker option
+ - Improve documentation (to include Docker)
