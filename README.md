@@ -1,6 +1,6 @@
 # MovieLens Data Processing Pipeline
 
-## Introduction
+## Project Summary
 
 The MovieLens Data Processing Pipeline is designed to process movie and rating data from the MovieLens dataset. The
 pipeline performs the following tasks:
@@ -180,3 +180,28 @@ and then destroys the cluster, on one day I can say that I have spent $0.37.
 Using only spot instances for the EMR cluster was decisive in keeping the cost down. Using that approach might be (or
 not) a good option for production code, depending on several other design options of the data pipeline (e.g., if a
 transformation fails, can it be repeated? Is this transformation idempotent?).
+
+## Versioning
+
+This project uses semantic versioning. The current version is stored in the `VERSION` file.
+
+### Updating the Version
+
+1. Update the `VERSION` file with the new version number.
+2. Update the `CHANGES.md` file with the changes for the new version.
+3. Commit the changes:
+   ```sh
+   git add VERSION CHANGES.md
+   git commit -m "Bump version to x.y.z``
+4. Tag the new version on github:
+   ```sh
+   git tag -a vX.Y.Z -m "Release version X.Y.Z"
+   git push origin vX.Y.Z```
+5. Push the changes to the repository:
+   ```sh
+    git push origin main
+   ```
+
+
+## Changelog
+See the [CHANGELOG](CHANGES.md) for details on changes and updates.
