@@ -56,18 +56,16 @@ movie_lens/
 └── VERSION
 ```
 
-The dataset is included in this repository, for make running the transformation
-locally, easier.
+****The dataset is included in this repository to make running the transformation locally easier.****
 
 ## Manual Configuration needed
-Despite having created quite a few scripts to help running this PySpark transformation,
-having full "infrastructure as code" was not part of the initial goal ans therefore 
-there are a few resources and manual steps that need to be done:
+
+Despite having created several scripts to assist in running this PySpark transformation, having full "infrastructure as
+code" was not part of the initial goal, and therefore, a few resources and manual steps are required:
+
 1. Create a new S3 Bucket
-2. Inside that bucket, create a "folder" called `dataset` and copy into there,  all the 
-files inside  the folder `dataset` of this repo
-3. Create 3 roles. These roles should really have the less possible permissions,
-but for simplicity I have given them the AdministratorAccess policy (by itself, that might not be enough):
+2. Inside that bucket, create a "folder" called `dataset` and copy all the files from the `dataset` folder of this repository into it.
+3. Create 3 roles. These roles should ideally have the least possible permissions, but for simplicity, I have assigned them the AdministratorAccess policy (which by itself might not be sufficient):    
     - movie_lens_EMR_serverless
     - movie_lens_execution 
     - movie_lens_task
@@ -100,8 +98,8 @@ pip install -r requirements.txt
 
 ### Configure
 
-For just all modes that this transformation can run, it is important to alter  alter the script `set_env_vars.sh`.  
-This script sets _environmental variables_ that serve as configuration:
+For all modes in which this transformation can run, it is important to modify the script `set_env_vars.sh`.  
+This script sets environment variables that serve as configuration:
 
 - **AWS_DEFAULT_REGION**: Your choice for the region you want to use (I have used `us-east-1`).
 - **S3_BUCKET_NAME**: The name (not ARN) of the bucket that you need to create first.
@@ -120,7 +118,7 @@ This script sets _environmental variables_ that serve as configuration:
 
 ## Running the pipeline directly
 
-Running this pipeline can be as simple as running the exec_*.sh shell scripts described bellow.
+Running this pipeline can be as simple as executing the exec_*.sh shell scripts described below.
 
 ### Execute
 
@@ -262,15 +260,11 @@ It is recommended to use a virtual environment and install the dependencies ther
 
 ## Costs considerations
 
-Having run several times both the scripts that output to S3 and the script that starts an EMR cluster, runs the script,
-and then destroys the cluster, on one day I can say that I have spent $0.37.
+Having run both the scripts that output to S3 and the script that starts an EMR cluster, runs the transformation, and then destroys the cluster multiple times in one day, I can say that I have spent $0.37.
 
-Although I have run this transformation several times and having used EMR, ECR, ECS, Fargate and maybe a few other AWS 
-services, I do not believe to have spent more than $3.
+Although I have executed this transformation several times and used EMR, ECR, ECS, Fargate, and possibly a few other AWS services, I do not believe I have spent more than $3.
 
-Using only spot instances for the EMR cluster was decisive in keeping the cost down. Using that approach might be (or
-not) a good option for production code, depending on several other design options of the data pipeline (e.g., if a
-transformation fails, can it be repeated? Is this transformation idempotent?).
+Using only spot instances for the EMR cluster was crucial in keeping the cost down. This approach might (or might not) be a good option for production code, depending on several other design considerations of the data pipeline (e.g., if a transformation fails, can it be repeated? Is this transformation idempotent?).
 
 ## Versioning
 
