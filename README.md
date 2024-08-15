@@ -45,6 +45,9 @@ movie_lens/
 ├── exec_local_compute_s3_storage.sh
 ├── movielens_pipeline.py
 ├── requirements.txt
+├──run_docker_EMR_compute_s3_storage.sh
+├──run_docker_local_compute_local_storage.sh
+├──run_docker_local_compute_s3_storage.sh
 ├── set_env_vars.sh
 └── README.md
 ```
@@ -73,10 +76,20 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Building the Docker Image
+
+A Docker image for the MovieLens Data Processing Pipeline can be created with:
+```sh
+docker build -t movielens_pipeline .
+```
+
 ### Running the Pipeline
 
 Running this pipeline can be as simple as running the exec_*.sh shell scripts described bellow.  
 A few scripts however will need some configuration done and resources manually created.
+
+It is also possible to run the same scripts from inside Docker containers that can themselves
+run locally or on AWS.
 
 #### Configure
 
@@ -128,8 +141,29 @@ source set_env_vars.sh
 Run in an AWS EMR Spark cluster and output to an S3 Bucket (all configured in `set_env_vars.sh`):
 
 ```sh
-./exec_local_compute_local_storage.sh
+./exec_EMR_compute_S3_storage.sh
 ```
+
+### Running the Docker Scripts locally
+
+Executes the pipeline using local compute and local storage.
+```sh
+docker build -t movielens_pipeline .
+docker run -v $(pwd):/app movielens_pipeline
+```
+
+Executes the pipeline using local compute and S3 storage.
+```sh
+source set_env_vars.sh
+docker run -v $(pwd):/app movielens_pipeline
+```
+
+Executes the pipeline using EMR compute and S3 storage.
+```sh
+source set_env_vars.sh
+./exec_EMR_compute_s3_storage.sh
+```
+
 
 ### Command-Line Arguments
 
