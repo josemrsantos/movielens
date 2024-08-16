@@ -277,7 +277,7 @@ This project uses semantic versioning. The current version is stored in the `VER
 3. Commit the changes:
    ```sh
    git add VERSION CHANGES.md
-   git commit -m "Bump version to x.y.z``
+   git commit -m "Bump version to x.y.z"
 4. Tag the new version on github:
    ```sh
    git tag -a vX.Y.Z -m "Release version X.Y.Z"

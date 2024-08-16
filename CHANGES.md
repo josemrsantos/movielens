@@ -1,8 +1,16 @@
 # Changelog
 
 ## [Unreleased]
-- Add Docker option
-- Improve documentation (to include Docker)
+- Infrastructure as code
+
+## [1.0.0] - 2024-08-15
+### Added
+- Add Docker option (running locally)
+- Add Docker option (running on AWS)
+- Improve documentation, to include Docker (local and AWS). Several small improvements.
+### Removed
+- Some files that were not important for the final project.
+
 
 ## [0.9.1] - 2024-08-14
 ### Removed
